@@ -51,6 +51,17 @@ def drawBox(attribute,name):
 	stringname="box"+name+".jpg"
 	plt.savefig(stringname)
 	plt.show()
+def drawHist(attribute,name):
+	#mybins=np.arange(-100,100,5)#fixed bin size
+	plt.xlim([min(attribute)-5,max(attribute)+5])
+	plt.hist(attribute,alpha=0.5)
+	plt.title('Histograms plot')
+	plt.xlabel(name)
+	plt.ylabel('count')
+	stringname="hist"+name+".jpg"
+	plt.savefig(stringname)
+	plt.show()
+
 if __name__ == "__main__":
 	#read file
 	f=open('horse-colic-dropMissingData.txt','r')
@@ -102,6 +113,7 @@ if __name__ == "__main__":
 			print AttributeName[i+1],"  Max value:",getMax(Attribute[i]), "Min value:",getMin(Attribute[i]),\
 			 "Average value:",getAver(Attribute[i]), "Median,Q1,Q3:",getMedandQ(Attribute[i]),\
 			  "The number of Miss value:",getMissCount(Attribute[i])
+			drawHist(Attribute[i],AttributeName[i+1])
 			drawQQ(Attribute[i],AttributeName[i+1])
 			drawBox(Attribute[i],AttributeName[i+1])
 		#print Attribute[i]
